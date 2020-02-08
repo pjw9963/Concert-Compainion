@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'login_button.dart';
-
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  double _buttonHeight = 100;
+
   @override
   Widget build(BuildContext context) {
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     }
 
     authenticate(String username) {
+      _buttonHeight = 50;
       // reach out to api and authenticate username
     }
 
@@ -54,7 +56,6 @@ class MyApp extends StatelessWidget {
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
                 ),
-                //fillColor: Colors.g reen
               ),
               validator: (val) {
                 if(val.length==0) {
@@ -68,7 +69,15 @@ class MyApp extends StatelessWidget {
               ),
             ),
             new Padding(padding: EdgeInsets.only(top: 50)),
-            new LoginButton(onPressed: authenticate(""))
+            new RaisedButton(
+              color: Colors.black,
+              splashColor: Colors.green,
+              animationDuration: Duration(seconds: 2),
+              onPressed: () => print("Button Pressed"),
+              padding: EdgeInsets.all(5),
+              elevation: 5.0,
+              child: Text("Continue", style: TextStyle(fontSize: 18, color: Colors.green),),
+            )
               ]
               ),
             )
