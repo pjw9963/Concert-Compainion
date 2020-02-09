@@ -21,6 +21,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
       children: <Widget>[
         new TextFormField(
           controller: myController,
+          style: Theme.of(context).textTheme.button,
           decoration: new InputDecoration(
             labelText: "Enter Spotify Username",
             labelStyle: TextStyle(fontSize: 18),
@@ -36,9 +37,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
               return null;
             }
           },
-          style: new TextStyle(
-            fontFamily: "Poppins",
-          ),
         ),
         new Padding(padding: EdgeInsets.only(top: 50)),
         new RaisedButton(
@@ -67,8 +65,8 @@ class LoginScreen extends StatelessWidget {
                 child: new Center(
                   child: new Column(
                       children : [
-                        new Padding(padding: EdgeInsets.only(top: 140.0)),
-                        new Text('Concert Compainion',
+                        new Padding(padding: EdgeInsets.only(top: 90.0)),
+                        new Text('Concert Companion',
                           style: Theme.of(context).textTheme.headline,
                         ),
                         new Padding(padding: EdgeInsets.only(top: 50.0)),

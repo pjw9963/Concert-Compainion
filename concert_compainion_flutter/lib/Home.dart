@@ -5,10 +5,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Concert Compainion"),
+        title: Text("Concert Companion"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.find_in_page),
+            icon: Icon(Icons.people),
             onPressed: () {
               Navigator.pushNamed(context, '/swipe');
             },
@@ -21,14 +21,6 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to first screen when tapped.
-          },
-          child: Text('Go back!'),
-        ),
       ),
     );
   }

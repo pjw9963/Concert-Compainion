@@ -3,6 +3,7 @@ import 'Login_Form.dart';
 import 'Home.dart';
 import 'Swipe.dart';
 import 'Message.dart';
+import 'swipe_feed_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,30 +21,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Concert Compainion Login',
-        initialRoute: '/',
-        routes: {
-          '/': (context) => LoginScreen(),
-          '/home': (context) => HomeScreen(),
-          //'/swipe': (context) =>
-        },
-        theme: ThemeData(
-          canvasColor: _background_grey,
-          fontFamily: 'BebasNeue',
-          primaryColor: _green,
-          buttonTheme: ButtonThemeData(
-            buttonColor: _green,
-          ),
-          accentColor: _green,
-          textTheme: TextTheme(
-            headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: _green),
-            title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-            body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-          ),
-    ),
+      debugShowCheckedModeBanner: false,
+      title: 'Concert Companion Login',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginScreen(),
+        '/home': (context) => HomeScreen(),
+        '/swipe': (context) => SwipeFeedPage(),
+      },
+      theme: ThemeData(
+        canvasColor: _background_grey,
+        fontFamily: 'BebasNeue',
+        primaryColor: _green,
+        buttonTheme: ButtonThemeData(
+          buttonColor: _green,
+        ),
+        accentColor: _green,
+        textTheme: TextTheme(
+          headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: _green),
+          title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          button: TextStyle(color: _green, fontFamily: 'roboto', fontSize: 20),
+        ),
+      ),
     );
   }
 }
-
-
