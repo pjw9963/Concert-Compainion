@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'Login_Form.dart';
-import 'Home.dart';
 import 'Message.dart';
 import 'swipe_feed_page.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -19,14 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Concert Companion Login',
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/home': (context) => HomeScreen(),
         '/swipe': (context) => SwipeFeedPage(),
+        '/message': (context) => MessagePage(),
       },
       theme: ThemeData(
         canvasColor: _background_grey,
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold, color: _green),
           title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          body1: TextStyle(fontSize: 20.0, fontFamily: 'Hind', color: _green),
           button: TextStyle(color: _green, fontFamily: 'roboto', fontSize: 20),
         ),
       ),

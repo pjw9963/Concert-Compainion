@@ -43,12 +43,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
           animationDuration: Duration(seconds: 2),
           onPressed: () {
             //myController.text send to api for sign in
-            Navigator.pushNamed(context, '/home');
+            Navigator.pushNamed(context, '/swipe');
           },
           padding: EdgeInsets.all(5),
           elevation: 5.0,
           child: Text("Continue", style: TextStyle(fontSize: 18),),
-        )
+        ),
       ],
     );
   }
