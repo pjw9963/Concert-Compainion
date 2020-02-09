@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Login_Form.dart';
 import 'Home.dart';
-import 'Swipe.dart';
 import 'Message.dart';
 import 'swipe_feed_page.dart';
 

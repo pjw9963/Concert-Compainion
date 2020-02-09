@@ -23,18 +23,17 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: Stack(
+      child: Stack(
       children: <Widget>[
         // Drag target row
         Row(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            dragTarget(),
+            dragTarget(false),
             Flexible(flex: 2, child: Container()),
-            dragTarget()
+            dragTarget(true)
           ],
-        ),
-        // Back card
+        ), // Back card
         Align(
           alignment: Alignment(0.0, 1.0),
           child: IgnorePointer(
@@ -77,18 +76,15 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
 
   void changeCardsOrder() {
     setState(() {
-      // Swap cards
-      var temp = cards[0];
       cards[0] = cards[1];
       cards[1] = cards[2];
-      cards[2] = temp;
 
       cards[2] = ProfileCardDraggable(cardsCounter);
       cardsCounter++;
     });
   }
 
-  Widget dragTarget() {
+  Widget dragTarget(bool choice) {
     return Flexible(
       flex: 1,
       child: DragTarget(
@@ -96,10 +92,12 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
             return Container();
           },
           onWillAccept: (_) {
+
             setState(() => dragOverTarget = true);
             return true;
           },
           onAccept: (_) {
+            choice ? print("good") : print("bad");
             changeCardsOrder();
             setState(() => dragOverTarget = false);
           },
