@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'cards_section_draggable.dart';
 import 'profile_card_draggable.dart';
+import 'Cards.dart';
 
 class SwipeFeedPage extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class SwipeFeedPage extends StatefulWidget {
 }
 
 class _SwipeFeedPageState extends State<SwipeFeedPage> {
+
+  Cards myCards = new Cards();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class _SwipeFeedPageState extends State<SwipeFeedPage> {
       ),
       body: Column(
         children: <Widget>[
-          CardsSectionDraggable(),
+          CardsSectionDraggable(myCards),
           buttonsRow()
         ],
       ),
@@ -52,6 +55,9 @@ class _SwipeFeedPageState extends State<SwipeFeedPage> {
             onPressed: () {
               //api call to report unwanted user
               //also update ui to remove current card
+              setState(() {
+                myCards.changeCardsOrder(false);
+              });
             },
             backgroundColor: Colors.white,
             child: Icon(Icons.close, color: Colors.red, size: 40,),
@@ -61,6 +67,9 @@ class _SwipeFeedPageState extends State<SwipeFeedPage> {
               heroTag: "btn3",
               onPressed: () {
                 //api post call to report wanted friend
+                setState(() {
+                  myCards.changeCardsOrder(true);
+                });
               },
               backgroundColor: Colors.white,
               child: Icon(Icons.favorite, color: Colors.green, size: 40,),

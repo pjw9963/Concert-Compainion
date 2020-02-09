@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'profile_card_draggable.dart';
+import 'Cards.dart';
 
 class CardsSectionDraggable extends StatefulWidget {
+
+  Cards myCards;
+
+  CardsSectionDraggable(Cards cards) {
+    myCards = cards;
+  }
+
   @override
   _CardsSectionState createState() => _CardsSectionState();
 }
 
 class _CardsSectionState extends State<CardsSectionDraggable> {
   bool dragOverTarget = false;
-  List<ProfileCardDraggable> cards = List();
-  int cardsCounter = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    for (cardsCounter = 0; cardsCounter < 3; cardsCounter++) {
-      cards.add(ProfileCardDraggable(cardsCounter));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +37,7 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
               child: SizedBox.fromSize(
             size: Size(MediaQuery.of(context).size.width * 0.8,
                 MediaQuery.of(context).size.height * 0.5),
-            child: cards[2],
+            child: widget.myCards.cards[2],
           )),
         ),
         // Middle card
@@ -50,7 +47,7 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
               child: SizedBox.fromSize(
             size: Size(MediaQuery.of(context).size.width * 0.85,
                 MediaQuery.of(context).size.height * 0.55),
-            child: cards[1],
+            child: widget.myCards.cards[1],
           )),
         ),
         // Front card
@@ -60,12 +57,12 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
             feedback: SizedBox.fromSize(
               size: Size(MediaQuery.of(context).size.width * 0.9,
                   MediaQuery.of(context).size.height * 0.6),
-              child: cards[0],
+              child: widget.myCards.cards[0],
             ),
             child: SizedBox.fromSize(
               size: Size(MediaQuery.of(context).size.width * 0.9,
                   MediaQuery.of(context).size.height * 0.6),
-              child: cards[0],
+              child: widget.myCards.cards[0],
             ),
             childWhenDragging: Container(),
           ),
@@ -74,13 +71,9 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
     ));
   }
 
-  void changeCardsOrder() {
+  void changeCardsOrder(bool choice) {
     setState(() {
-      cards[0] = cards[1];
-      cards[1] = cards[2];
-
-      cards[2] = ProfileCardDraggable(cardsCounter);
-      cardsCounter++;
+      widget.myCards.changeCardsOrder(choice);
     });
   }
 
@@ -92,13 +85,11 @@ class _CardsSectionState extends State<CardsSectionDraggable> {
             return Container();
           },
           onWillAccept: (_) {
-
             setState(() => dragOverTarget = true);
             return true;
           },
           onAccept: (_) {
-            choice ? print("good") : print("bad");
-            changeCardsOrder();
+            changeCardsOrder(choice);
             setState(() => dragOverTarget = false);
           },
           onLeave: (_) => setState(() => dragOverTarget = false)),
