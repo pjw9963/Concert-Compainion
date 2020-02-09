@@ -9,28 +9,6 @@ class SwipeFeedPage extends StatefulWidget {
 
 class _SwipeFeedPageState extends State<SwipeFeedPage> {
 
-  List<ProfileCardDraggable> cards = List();
-  int cardsCounter = 0;
-
-  void changeCardsOrder() {
-    setState(() {
-      cards[0] = cards[1];
-      cards[1] = cards[2];
-
-      cards[2] = ProfileCardDraggable(cardsCounter);
-      cardsCounter++;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    for (cardsCounter = 0; cardsCounter < 3; cardsCounter++) {
-      cards.add(ProfileCardDraggable(cardsCounter));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
