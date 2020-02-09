@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'Person.dart';
 
 class MessagePage extends StatelessWidget {
   @override
@@ -22,27 +25,42 @@ class MessagePage extends StatelessWidget {
           ),
         ],
       ),
-      body: getListView(),
+      body: FutureBuilder<List<Person>>(
+        future: getPerson(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+          List<Person> data = snapshot.data;
+          return getListView(data);
+          } else {
+          return Text("Not working");
+          }
+        },
+      ),
     );
   }
 
-  List<String> getListElements() {
-    var items = List<String>.generate(19, (counter) => "example@email.com $counter");
-    return items;
+
+  Future<List<Person>> getPerson() async {
+    final url = 'https://uinames.com/api/amount=30';
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body);
+      return jsonResponse.map((person) => new Person.fromJson(person)).toList();
+    } else {
+      throw Exception('Failed to load jobs from API');
+    }
   }
 
-  Widget getListView() {
-    var listItems = getListElements();
-    var listview = ListView.builder(itemBuilder: (context, index) {
-      return ListTile(
-        leading: Icon(Icons.arrow_forward),
-        title: Text(listItems[index]),
-        onTap: () {
-          debugPrint("clicked");
-        },
-      );
-    },
-    itemCount: listItems.length,);
-    return listview;
+  Widget getListView(data) {
+    return ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(data),
+            //title: Text("test"),
+          );
+        });
   }
 }
